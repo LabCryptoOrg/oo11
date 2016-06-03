@@ -37,22 +37,33 @@ typedef unsigned __int64 uint64_t;
 #include <stdint.h>
 #endif
 
-#include <string>
+#include <stdio.h>
 
-#include <org/labcrypto/oo11/session.h>
+#include <string>
+#include <stdexcept>
+
+#include <org/labcrypto/oo11/pkcs11/cryptoki.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
+  class Session;
   class Slot {
   public:
-    Session 
-    LoginAsUser (
+    Slot (
+      uint32_t slotId
+    ) : slotId_(slotId) {
+    }
+  public:
+    Session*
+    MakeAnonymousSession ();
+    Session*
+    MakeUserSession (
       std::string userPassword
     );
-    Session
-    LoginAsSO (
+    Session*
+    MakeSOSession (
       std::string soPassword
     );
   public:

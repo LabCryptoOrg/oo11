@@ -28,8 +28,7 @@ namespace org {
 namespace labcrypto {
 namespace oo11 {
   void
-  Session::Loggout () {
-
+  Session::Logout () {
   }
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto

@@ -37,22 +37,34 @@ typedef unsigned __int64 uint64_t;
 #include <stdint.h>
 #endif
 
-#include <org/labcrypto/oo11/slot.h>
+#include <stdio.h>
+
+#include <stdexcept>
+
+#include <org/labcrypto/oo11/pkcs11/cryptoki.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
+  enum SessionType {
+    SESSION_TYPE__ANONYMOUS,
+    SESSION_TYPE__USER,
+    SESSION_TYPE__SO
+  };
+  class Slot;
   class Session {
+    friend class Slot;
   public:
     void
     Logout();
   public:
-    inline Slot GetSlot() {
+    inline Slot* GetSlot() {
       return slot_;
     }
-  public:
-    Slot slot_;
+  private:
+    Slot *slot_;
+    SessionType type_;
     CK_SESSION_HANDLE handle_;
   };
 } // END NAMESPACE oo11

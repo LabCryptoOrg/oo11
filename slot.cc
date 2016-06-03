@@ -22,22 +22,107 @@
  */
 
 #include <org/labcrypto/oo11/slot.h>
+#include <org/labcrypto/oo11/session.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  Session
-  Slot::LoginAsUser (
+  Session*
+  Slot::MakeAnonymousSession () {
+    CK_OBJECT_HANDLE sessionHandle;
+    CK_RV result = 
+      C_OpenSession (
+        slotId_, 
+        CKF_RW_SESSION | CKF_SERIAL_SESSION,
+        NULL,
+        NULL,
+        &sessionHandle
+      );
+    if (result) {
+      char errorMessage[256];
+      sprintf(errorMessage, "Error in making session, error code: 0x%lx\n", result);
+      throw std::runtime_error(errorMessage);
+    }
+    Session *session = new Session;
+    session->handle_ = sessionHandle;
+    session->slot_ = this;
+    session->type_ = SESSION_TYPE__ANONYMOUS;
+    return session;
+  }
+  Session*
+  Slot::MakeUserSession (
     std::string userPassword
   ) {
-
+    CK_OBJECT_HANDLE sessionHandle;
+    CK_RV result = 
+      C_OpenSession (
+        slotId_, 
+        CKF_RW_SESSION | CKF_SERIAL_SESSION,
+        NULL,
+        NULL,
+        &sessionHandle
+      );
+    if (result) {
+      char errorMessage[256];
+      sprintf(errorMessage, "Error in making user session, error code: 0x%lx\n", result);
+      throw std::runtime_error(errorMessage);
+    }
+    result = 
+      C_Login (
+        sessionHandle, 
+        CKU_USER,
+        (CK_CHAR_PTR)userPassword.c_str(),
+        userPassword.size()
+      );
+    if (result) {
+      char errorMessage[256];
+      sprintf(errorMessage, "Error in logging in as user, error code: 0x%lx\n", result);
+      C_CloseSession(sessionHandle);
+      throw std::runtime_error(errorMessage);
+    }
+    Session *session = new Session;
+    session->handle_ = sessionHandle;
+    session->slot_ = this;
+    session->type_ = SESSION_TYPE__USER;
+    return session;
   }
-  Session
-  Slot::LoginAsSO (
+  Session*
+  Slot::MakeSOSession (
     std::string soPassword
   ) {
-    
+    CK_OBJECT_HANDLE sessionHandle;
+    CK_RV result = 
+      C_OpenSession (
+        slotId_, 
+        CKF_RW_SESSION | CKF_SERIAL_SESSION,
+        NULL,
+        NULL,
+        &sessionHandle
+      );
+    if (result) {
+      char errorMessage[256];
+      sprintf(errorMessage, "Error in making SO session, error code: 0x%lx\n", result);
+      throw std::runtime_error(errorMessage);
+    }
+    result = 
+      C_Login (
+        sessionHandle, 
+        CKU_SO,
+        (CK_CHAR_PTR)soPassword.c_str(),
+        soPassword.size()
+      );
+    if (result) {
+      char errorMessage[256];
+      sprintf(errorMessage, "Error in logging in as SO, error code: 0x%lx\n", result);
+      C_CloseSession(sessionHandle);
+      throw std::runtime_error(errorMessage);
+    }
+    Session *session = new Session;
+    session->handle_ = sessionHandle;
+    session->slot_ = this;
+    session->type_ = SESSION_TYPE__USER;
+    return session;
   }
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
