@@ -21,61 +21,16 @@
  *  SOFTWARE.
  */
 
-#ifndef _ORG_LABCRYPTO_OO11__SESSION_H_
-#define _ORG_LABCRYPTO_OO11__SESSION_H_
-
-#ifdef _MSC_VER
-typedef __int8 int8_t;
-typedef unsigned __int8 uint8_t;
-typedef __int16 int16_t;
-typedef unsigned __int16 uint16_t;
-typedef __int32 int32_t;
-typedef unsigned __int32 uint32_t;
-typedef __int64 int64_t;
-typedef unsigned __int64 uint64_t;
-#else
-#include <stdint.h>
-#endif
-
-#include <stdio.h>
-
-#include <stdexcept>
-
-#include <org/labcrypto/oo11/pkcs11/cryptoki.h>
+#include <org/labcrypto/oo11/session.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  enum SessionType {
-    SESSION_TYPE__ANONYMOUS,
-    SESSION_TYPE__USER,
-    SESSION_TYPE__SO
-  };
-  class Slot;
-  class Object;
-  class Session {
-    friend class Slot;
-    friend class Object;
-  public:
-    Session() 
-      : closed_(false) {
-    }
-  public:
-    void
-    Logout();
-  public:
-    inline Slot* GetSlot() {
-      return slot_;
-    }
-  private:
-    bool closed_;
-    Slot *slot_;
-    SessionType type_;
-    CK_SESSION_HANDLE handle_;
-  };
+  std::string
+  Object::GetLabel () {
+    return "";
+  }
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
 } // END NAMESPACE org
-
-#endif

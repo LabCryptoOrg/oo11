@@ -21,8 +21,8 @@
  *  SOFTWARE.
  */
 
-#ifndef _ORG_LABCRYPTO_OO11__SESSION_H_
-#define _ORG_LABCRYPTO_OO11__SESSION_H_
+#ifndef _ORG_LABCRYPTO_OO11__OBJECT_H_
+#define _ORG_LABCRYPTO_OO11__OBJECT_H_
 
 #ifdef _MSC_VER
 typedef __int8 int8_t;
@@ -47,32 +47,14 @@ typedef unsigned __int64 uint64_t;
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  enum SessionType {
-    SESSION_TYPE__ANONYMOUS,
-    SESSION_TYPE__USER,
-    SESSION_TYPE__SO
-  };
-  class Slot;
-  class Object;
-  class Session {
-    friend class Slot;
-    friend class Object;
+  class Session;
+  class Object {
   public:
-    Session() 
-      : closed_(false) {
-    }
-  public:
-    void
-    Logout();
-  public:
-    inline Slot* GetSlot() {
-      return slot_;
-    }
+    std::string
+    GetLabel();
   private:
-    bool closed_;
-    Slot *slot_;
-    SessionType type_;
-    CK_SESSION_HANDLE handle_;
+    Session *session_;
+    CK_OBJECT_HANDLE handle_;
   };
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto

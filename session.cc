@@ -35,6 +35,7 @@ namespace oo11 {
       sprintf(errorMessage, "Error in logging out, error code: 0x%lx\n", result);
       throw std::runtime_error(errorMessage);
     }
+    closed_ = true;
   }
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
