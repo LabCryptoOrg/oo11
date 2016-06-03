@@ -21,8 +21,8 @@
  *  SOFTWARE.
  */
 
-#ifndef _ORG_LABCRYPTO_OO11__PRIVATE_KEY_H_
-#define _ORG_LABCRYPTO_OO11__PRIVATE_KEY_H_
+#ifndef _ORG_LABCRYPTO_OO11__KEY_H_
+#define _ORG_LABCRYPTO_OO11__KEY_H_
 
 #ifdef _MSC_VER
 typedef __int8 int8_t;
@@ -47,7 +47,7 @@ typedef unsigned __int64 uint64_t;
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  class PrivateKey : public Object {
+  class Key : public Object {
   };
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto

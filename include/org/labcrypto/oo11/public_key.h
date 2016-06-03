@@ -41,13 +41,13 @@ typedef unsigned __int64 uint64_t;
 
 #include <stdexcept>
 
-#include <org/labcrypto/oo11/object.h>
+#include <org/labcrypto/oo11/key.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  class PublicKey : public Object {
+  class PublicKey : public Key {
   };
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto

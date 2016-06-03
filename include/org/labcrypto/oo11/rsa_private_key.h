@@ -21,46 +21,36 @@
  *  SOFTWARE.
  */
 
-#include <org/labcrypto/oo11/session.h>
+#ifndef _ORG_LABCRYPTO_OO11__RSA_PRIVATE_KEY_H_
+#define _ORG_LABCRYPTO_OO11__RSA_PRIVATE_KEY_H_
+
+#ifdef _MSC_VER
+typedef __int8 int8_t;
+typedef unsigned __int8 uint8_t;
+typedef __int16 int16_t;
+typedef unsigned __int16 uint16_t;
+typedef __int32 int32_t;
+typedef unsigned __int32 uint32_t;
+typedef __int64 int64_t;
+typedef unsigned __int64 uint64_t;
+#else
+#include <stdint.h>
+#endif
+
+#include <stdio.h>
+
+#include <stdexcept>
+
+#include <org/labcrypto/oo11/public_key.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  std::vector<Object*>
-  GetEverything() {
-    // TODO
-  }
-  std::vector<RSAPublicKey*> 
-  EnumerateRSAPublicRSAKeys() {
-    // TODO
-  }
-  std::vector<RSAPrivateKey*> 
-  EnumerateRSAPrivateRSAKeys() {
-    // TODO
-  }
-  RSAPublicKey*
-  GetRSAPublicKey (
-    std::string label
-  ) {
-    // TODO
-  }
-  RSAPrivateKey*
-  GetRSAPrivateKey (
-    std::string label
-  ) {
-    // TODO
-  }
-  void
-  Session::Logout () {
-    CK_RV result = C_Logout(handle_);
-    if (result) {
-      char errorMessage[256];
-      sprintf(errorMessage, "Error in logging out, error code: 0x%lx\n", result);
-      throw std::runtime_error(errorMessage);
-    }
-    closed_ = true;
-  }
+  class RSAPrivateKey : public PrivateKey {
+  };
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
 } // END NAMESPACE org
+
+#endif

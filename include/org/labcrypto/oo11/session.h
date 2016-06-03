@@ -55,8 +55,8 @@ namespace oo11 {
   };
   class Slot;
   class Object;
-  class PrivateKey;
-  class PublicKey;
+  class RSAPrivateKey;
+  class RSAPublicKey;
   class Session {
     friend class Slot;
     friend class Object;
@@ -76,16 +76,16 @@ namespace oo11 {
   public:
     std::vector<Object*>
     GetEverything();
-    std::vector<PublicKey*> 
-    EnumeratePublicKeys();
-    std::vector<PrivateKey*> 
-    EnumeratePrivateKeys();
-    PublicKey*
-    GetPublicKey (
+    std::vector<RSAPublicKey*> 
+    EnumerateRSAPublicKeys();
+    std::vector<RSAPrivateKey*> 
+    EnumerateRSAPrivateKeys();
+    RSAPublicKey*
+    GetRSAPublicKey (
       std::string label
     );
-    PrivateKey*
-    GetPrivateKey (
+    RSAPrivateKey*
+    GetRSAPrivateKey (
       std::string label
     );
   private:
