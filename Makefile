@@ -33,6 +33,7 @@ compile:
 	mkdir -p .libs
 	g++ $(cppFlags) slot.cc -o .libs/slot.o
 	g++ $(cppFlags) session.cc -o .libs/session.o
+	g++ $(cppFlags) object.cc -o .libs/object.o
 
 static:
 	rm -rf .libs/$(libName).a.$(majorVersion).$(minorVersion)

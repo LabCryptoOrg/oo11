@@ -21,7 +21,7 @@
  *  SOFTWARE.
  */
 
-#include <org/labcrypto/oo11/session.h>
+#include <org/labcrypto/oo11/object.h>
 
 
 namespace org {
