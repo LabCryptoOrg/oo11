@@ -21,8 +21,8 @@
  *  SOFTWARE.
  */
 
-#ifndef _ORG_LABCRYPTO_OO11__SLOT_H_
-#define _ORG_LABCRYPTO_OO11__SLOT_H_
+#ifndef _ORG_LABCRYPTO_OO11__SESSION_H_
+#define _ORG_LABCRYPTO_OO11__SESSION_H_
 
 #ifdef _MSC_VER
 typedef __int8 int8_t;
@@ -37,25 +37,23 @@ typedef unsigned __int64 uint64_t;
 #include <stdint.h>
 #endif
 
-#include <string>
+#include <org/labcrypto/oo11/slot.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  class Session;
-  class Slot {
+  class Session {
   public:
-    Session 
-    LoginAsUser (
-      std::string userPassword
-    );
-    Session
-    LoginAsSO (
-      std::string soPassword
-    );
+    void
+    Logout();
   public:
-    uint32_t slotId_;
+    inline Slot GetSlot() {
+      return slot_;
+    }
+  public:
+    Slot slot_;
+    CK_SESSION_HANDLE handle_;
   };
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
