@@ -27,6 +27,30 @@
 namespace org {
 namespace labcrypto {
 namespace oo11 {
+  std::vector<Object*>
+  GetEverything() {
+    // TODO
+  }
+  std::vector<PublicKey*> 
+  EnumeratePublicKeys() {
+    // TODO
+  }
+  std::vector<PrivateKey*> 
+  EnumeratePrivateKeys() {
+    // TODO
+  }
+  PublicKey*
+  GetPublicKey (
+    std::string label
+  ) {
+    // TODO
+  }
+  PrivateKey*
+  GetPrivateKey (
+    std::string label
+  ) {
+    // TODO
+  }
   void
   Session::Logout () {
     CK_RV result = C_Logout(handle_);

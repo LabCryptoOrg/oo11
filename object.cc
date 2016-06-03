@@ -31,6 +31,10 @@ namespace oo11 {
   Object::GetLabel () {
     return "";
   }
+  ClassType
+  Object::GetClass () {
+    return CLASS_TYPE__UNKNOWN;
+  }
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
 } // END NAMESPACE org

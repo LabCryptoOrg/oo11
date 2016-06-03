@@ -21,8 +21,8 @@
  *  SOFTWARE.
  */
 
-#ifndef _ORG_LABCRYPTO_OO11__OBJECT_H_
-#define _ORG_LABCRYPTO_OO11__OBJECT_H_
+#ifndef _ORG_LABCRYPTO_OO11__PRIVATE_KEY_H_
+#define _ORG_LABCRYPTO_OO11__PRIVATE_KEY_H_
 
 #ifdef _MSC_VER
 typedef __int8 int8_t;
@@ -41,28 +41,13 @@ typedef unsigned __int64 uint64_t;
 
 #include <stdexcept>
 
-#include <org/labcrypto/oo11/pkcs11/cryptoki.h>
+#include <org/labcrypto/oo11/object.h>
 
 
 namespace org {
 namespace labcrypto {
 namespace oo11 {
-  enum ClassType {
-    CLASS_TYPE__UNKNOWN,
-    CLASS_TYPE__PUBLIC_KEY,
-    CLASS_TYPE__PRIVATE_KEY
-  };
-  class Session;
-  class Object {
-    friend class Session;
-  public:
-    std::string
-    GetLabel();
-    ClassType
-    GetClass();
-  protected:
-    Session *session_;
-    CK_OBJECT_HANDLE handle_;
+  class PrivateKey : public Object {
   };
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto

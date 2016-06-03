@@ -39,6 +39,7 @@ typedef unsigned __int64 uint64_t;
 
 #include <stdio.h>
 
+#include <vector>
 #include <stdexcept>
 
 #include <org/labcrypto/oo11/pkcs11/cryptoki.h>
@@ -54,6 +55,8 @@ namespace oo11 {
   };
   class Slot;
   class Object;
+  class PrivateKey;
+  class PublicKey;
   class Session {
     friend class Slot;
     friend class Object;
@@ -65,9 +68,26 @@ namespace oo11 {
     void
     Logout();
   public:
-    inline Slot* GetSlot() {
+    inline 
+    Slot* 
+    GetSlot() {
       return slot_;
     }
+  public:
+    std::vector<Object*>
+    GetEverything();
+    std::vector<PublicKey*> 
+    EnumeratePublicKeys();
+    std::vector<PrivateKey*> 
+    EnumeratePrivateKeys();
+    PublicKey*
+    GetPublicKey (
+      std::string label
+    );
+    PrivateKey*
+    GetPrivateKey (
+      std::string label
+    );
   private:
     bool closed_;
     Slot *slot_;
