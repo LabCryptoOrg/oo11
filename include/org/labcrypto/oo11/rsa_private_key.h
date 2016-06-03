@@ -41,7 +41,7 @@ typedef unsigned __int64 uint64_t;
 
 #include <stdexcept>
 
-#include <org/labcrypto/oo11/public_key.h>
+#include <org/labcrypto/oo11/private_key.h>
 
 
 namespace org {
