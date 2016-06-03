@@ -29,6 +29,12 @@ namespace labcrypto {
 namespace oo11 {
   void
   Session::Logout () {
+    CK_RV result = C_Logout(handle_);
+    if (result) {
+      char errorMessage[256];
+      sprintf(errorMessage, "Error in logging out, error code: 0x%lx\n", result);
+      throw std::runtime_error(errorMessage);
+    }
   }
 } // END NAMESPACE oo11
 } // END NAMESPACE labcrypto
